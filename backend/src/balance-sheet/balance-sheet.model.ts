@@ -19,6 +19,10 @@ export const BalanceSheetQueryParams = z.object({
 
 export type BalanceSheetQueryParams = z.infer<typeof BalanceSheetQueryParams>;
 
+export interface BalanceSheetReports {
+	Reports: BalanceSheetReport[];
+}
+
 export interface BalanceSheetReport {
 	ReportId: string;
 	ReportName: string;
