@@ -20,6 +20,7 @@ export const BalanceSheetQueryParams = z.object({
 export type BalanceSheetQueryParams = z.infer<typeof BalanceSheetQueryParams>;
 
 export interface BalanceSheetReports {
+	Status: string; // Note that this was in the API response from Docker, but not in the documentation. Unsure the valid values here
 	Reports: BalanceSheetReport[];
 }
 
@@ -34,8 +35,10 @@ export interface BalanceSheetReport {
 }
 
 export interface BalanceSheetReportRow {
-	RowType: string;
+	RowType: "Header" | "Section" | "Row" | "SummaryRow";
+	Title?: string;
 	Cells: BalanceSheetReportCell[];
+	Rows?: BalanceSheetReportRow[];
 }
 
 export interface BalanceSheetReportCell {
