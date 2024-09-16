@@ -10,8 +10,11 @@ export const BalanceSheetQueryParams = z.object({
 	timeframe: z.optional(z.enum([...timeframeOptions])),
 	trackingOptionID1: z.optional(z.string()),
 	trackingOptionID2: z.optional(z.string()),
-	standardLayout: z.optional(z.boolean()),
-	paymentsOnly: z.optional(z.boolean()),
+	// Query params are always string, so we need to coerce into boolean (if it is a valid boolean string)
+	standardLayout: z.optional(
+		z.enum(["true", "false"]).pipe(z.coerce.boolean()),
+	),
+	paymentsOnly: z.optional(z.enum(["true", "false"]).pipe(z.coerce.boolean())),
 });
 
 export type BalanceSheetQueryParams = z.infer<typeof BalanceSheetQueryParams>;
