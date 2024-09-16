@@ -6,7 +6,7 @@ export const TimeframeOptions: TimeframeOption[] = [...timeframeOptions];
 
 export const BalanceSheetQueryParams = z.object({
 	date: z.optional(z.string().date()),
-	periods: z.optional(z.number().min(1).max(11)),
+	periods: z.optional(z.coerce.number().min(1).max(11)),
 	timeframe: z.optional(z.enum([...timeframeOptions])),
 	trackingOptionID1: z.optional(z.string()),
 	trackingOptionID2: z.optional(z.string()),
