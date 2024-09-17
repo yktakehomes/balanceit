@@ -1,0 +1,26 @@
+services:
+  xero:
+    image: jaypeng2015/show-me-the-money:latest
+    restart: always
+    ports:
+      - 3000:3000
+
+  back:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+      - XERO_URL=xero:3000
+
+
+  front:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    environment:
+      - VITE_SERVER_URL=http://localhost:4000
