@@ -1,6 +1,5 @@
 import {
 	BalanceSheetQueryParams,
-	BalanceSheetReport,
 	BalanceSheetReportRow,
 	BalanceSheetReports,
 } from "./balance-sheets.model";
@@ -30,7 +29,9 @@ export async function fetchBalanceSheets(
 		},
 	);
 
-	// TODO: parse and convert date to JS date
+	if (!response.ok) {
+		throw new Error("Request failed");
+	}
 
 	const reports = (await response.json()) as BalanceSheetReports;
 

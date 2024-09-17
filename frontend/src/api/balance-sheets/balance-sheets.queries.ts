@@ -7,5 +7,8 @@ export const fetchBalanceSheetsQueryOptions = (
 ) =>
 	queryOptions({
 		queryKey: ["balance-sheets", params],
-		queryFn: async () => fetchBalanceSheets(params),
+		queryFn: async () => {
+			return await fetchBalanceSheets(params);
+		},
+		retry: 0,
 	});

@@ -65,10 +65,14 @@ export const BalanceSheetFilters = ({
 
 	return (
 		<Modal open={open} onClose={onClose}>
-			<div className="bg-white p-8 rounded-lg">
+			<div
+				data-testid="balance-sheet-filters-form"
+				className="bg-white p-8 rounded-lg"
+			>
 				<form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
 					<FormInput
 						id="date"
+						data-testid="date"
 						type="date"
 						label="Date"
 						{...register("date")}
@@ -76,6 +80,7 @@ export const BalanceSheetFilters = ({
 					/>
 					<FormInput
 						id="periods"
+						data-testid="periods"
 						type="number"
 						min="1"
 						max="11"
@@ -85,6 +90,7 @@ export const BalanceSheetFilters = ({
 					/>
 					<FormSelect
 						id="timeframe"
+						data-testid="timeframe"
 						label="Timeframe"
 						{...register("timeframe")}
 						error={errors.timeframe}
@@ -98,12 +104,14 @@ export const BalanceSheetFilters = ({
 					</FormSelect>
 					<FormInput
 						id="trackingOptionID1"
+						data-testid="trackingOptionID1"
 						label="Tracking Option ID 1"
 						{...register("trackingOptionID1")}
 						error={errors.trackingOptionID1}
 					/>
 					<FormInput
 						id="trackingOptionID2"
+						data-testid="trackingOptionID2"
 						label="Tracking Option ID 2"
 						{...register("trackingOptionID2")}
 						error={errors.trackingOptionID2}
@@ -111,12 +119,14 @@ export const BalanceSheetFilters = ({
 
 					<FormCheckbox
 						id="standardLayout"
+						data-testid="standardLayout"
 						label="Standard Layout"
 						{...register("standardLayout")}
 						error={errors.standardLayout}
 					/>
 					<FormCheckbox
 						id="paymentsOnly"
+						data-testid="paymentsOnly"
 						label="Payments Only"
 						{...register("paymentsOnly")}
 						error={errors.paymentsOnly}

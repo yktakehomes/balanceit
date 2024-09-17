@@ -12,7 +12,7 @@ export default function App() {
 
 	const [balanceSheetParams, setBalanceSheetParams] =
 		useState<BalanceSheetQueryParams>({});
-	const { data: balanceSheets } = useQuery(
+	const { isError, data: balanceSheets } = useQuery(
 		fetchBalanceSheetsQueryOptions(balanceSheetParams),
 	);
 
@@ -36,6 +36,7 @@ export default function App() {
 					<div className="flex flex-col">
 						{balanceSheet?.ReportTitles.map((title, index) => (
 							<div
+								data-testid={`report-title-${index}`}
 								key={`title-${index}`}
 								className={clsx({
 									"text-2xl font-semibold": index === 0,
@@ -45,6 +46,12 @@ export default function App() {
 								{title}
 							</div>
 						))}
+
+						{isError && (
+							<div data-testid="loading-error" className="text-red-400">
+								Error loading balance sheet. Please try again later.
+							</div>
+						)}
 					</div>
 					<div className="pr-8">
 						<Button type="button" onClick={() => setOpenForm(true)}>
