@@ -25,3 +25,19 @@ export const useSuccessBalanceSheet = () =>
 			);
 		}),
 	);
+
+export const useMockBalanceSheet = (
+	mockFunction: (
+		urlSearchParams: URLSearchParams,
+	) => Partial<BalanceSheetReports>,
+) =>
+	server.use(
+		http.get("*/api/balance-sheets", ({ request }) => {
+			const url = new URL(request.url);
+			const queryParams = url.searchParams;
+
+			return new HttpResponse(JSON.stringify(mockFunction(queryParams)), {
+				status: 200,
+			});
+		}),
+	);
